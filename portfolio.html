@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CODE-X · Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Mooxy&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --primary: #00ff9d; --secondary: #0a0a0a; --accent: #00ff9d;
+      --text: #ffffff; --bg: #0a0a0a; --card-bg: rgba(255,255,255,0.05);
+      --glass-border: rgba(0,255,157,0.2); --shadow: 0 20px 35px -8px rgba(0,0,0,0.9);
+      --font-heading: 'Mooxy', sans-serif; --font-body: 'Mooxy', sans-serif;
+    }
+    body.light { --bg: #f5f5f5; --text: #1a1a1a; --secondary: #ffffff; --card-bg: rgba(0,0,0,0.02); }
+    body { background: var(--bg); color: var(--text); font-family: var(--font-body); transition: all 0.3s; }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 10px; }
+    .back-to-top { position: fixed; bottom: 100px; right: 30px; background: var(--accent); color: #0a0a0a; width: 55px; height: 55px; border-radius: 50%; border: none; cursor: pointer; display: none; align-items: center; justify-content: center; font-size: 1.8rem; box-shadow: 0 0 25px var(--accent); z-index: 997; transition: all 0.3s; opacity: 0; transform: scale(0.8); }
+    .back-to-top.show { display: flex; opacity: 1; transform: scale(1); }
+    header { display: flex; justify-content: space-between; align-items: center; padding: 18px 32px; position: fixed; width: 100%; background: rgba(10,10,10,0.9); backdrop-filter: blur(18px); border-bottom: 1px solid var(--glass-border); z-index: 1000; }
+    body.light header { background: rgba(255,255,255,0.9); }
+    .logo-container a { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--accent); box-shadow: 0 0 15px var(--accent); transition: transform 0.3s; }
+    .logo-text { font-size: 1.8rem; font-weight: 400; background: linear-gradient(130deg, #00ff9d, #00cc7a, #00ff9d); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    nav { display: flex; gap: 32px; }
+    nav a { color: var(--text); text-decoration: none; font-size: 1.1rem; position: relative; transition: 0.2s; }
+    nav a::after { content: ''; position: absolute; width: 0; height: 2.5px; background: var(--accent); left: 0; bottom: -8px; border-radius: 4px; transition: 0.25s; }
+    nav a:hover::after { width: 100%; }
+    nav a:hover { color: var(--accent); }
+    .menu-icons { display: flex; gap: 15px; align-items: center; }
+    .social-icons { display: flex; gap: 15px; }
+    .social-icon { width: 40px; height: 40px; border-radius: 50%; background: rgba(0,255,157,0.1); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; color: var(--accent); transition: 0.3s; text-decoration: none; }
+    .social-icon:hover { background: var(--accent); color: #0a0a0a; transform: translateY(-5px); }
+    .theme-toggle { background: rgba(0,255,157,0.1); border: 1px solid var(--accent); color: var(--accent); padding: 10px; border-radius: 50%; cursor: pointer; transition: 0.3s; width: 45px; height: 45px; display: flex; align-items: center; justify-content: center; }
+    .hamburger { display: none; font-size: 2rem; cursor: pointer; color: var(--accent); }
+    .mobile-nav { position: fixed; top: 0; right: -100%; width: 300px; height: 100vh; background: rgba(10,10,10,0.98); backdrop-filter: blur(25px); padding: 35px 30px; transition: 0.4s; display: flex; flex-direction: column; gap: 20px; z-index: 1002; border-left: 2px solid var(--accent); }
+    .mobile-nav.active { right: 0; }
+    .close-btn { font-size: 2.2rem; color: var(--accent); cursor: pointer; align-self: flex-end; margin-bottom: 10px; }
+    .mobile-nav a { color: var(--text); text-decoration: none; font-size: 1.6rem; border-bottom: 1px solid rgba(0,255,157,0.3); padding-bottom: 12px; }
+    .mobile-social-section { margin-top: 20px; }
+    .mobile-social-icons { display: flex; gap: 15px; flex-wrap: wrap; }
+    .mobile-social-icon { width: 45px; height: 45px; border-radius: 50%; background: rgba(0,255,157,0.1); border: 1px solid var(--accent); display: flex; align-items: center; justify-content: center; color: var(--accent); text-decoration: none; }
+    .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); backdrop-filter: blur(3px); z-index: 1001; opacity: 0; transition: opacity 0.3s; }
+    .overlay.active { display: block; opacity: 1; }
+    .page-content { min-height: 100vh; padding: 150px 30px 100px; max-width: 1300px; margin: 0 auto; }
+    .section-header { text-align: center; margin-bottom: 70px; }
+    .section-header h2 { font-size: 3.4rem; background: linear-gradient(130deg, var(--accent), var(--primary), #00ff9d); -webkit-background-clip: text; background-clip: text; color: transparent; display: inline-block; }
+    .portfolio-filter { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap; }
+    .filter-btn { padding: 10px 25px; background: transparent; border: 1px solid var(--accent); color: var(--accent); border-radius: 30px; cursor: pointer; transition: 0.3s; }
+    .filter-btn.active, .filter-btn:hover { background: var(--accent); color: #0a0a0a; }
+    .portfolio-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; }
+    .portfolio-item { background: var(--card-bg); border-radius: 25px; overflow: hidden; border: 1px solid var(--glass-border); transition: 0.3s; cursor: pointer; }
+    .portfolio-item:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 0 40px var(--accent); }
+    .portfolio-image { width: 100%; height: 250px; background: linear-gradient(135deg, #1a1a2e, #16213e); display: flex; align-items: center; justify-content: center; font-size: 4rem; color: var(--accent); }
+    .portfolio-info { padding: 20px; }
+    .portfolio-info h3 { margin-bottom: 10px; }
+    .portfolio-info p { opacity: 0.7; margin-bottom: 15px; }
+    .portfolio-tags { display: flex; gap: 10px; flex-wrap: wrap; }
+    .tag { padding: 5px 12px; background: rgba(0,255,157,0.1); border-radius: 20px; font-size: 0.8rem; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 2000; align-items: center; justify-content: center; }
+    .modal.active { display: flex; }
+    .modal-content { max-width: 800px; width: 90%; background: var(--bg); border-radius: 30px; padding: 30px; border: 2px solid var(--accent); }
+    .modal-close { float: right; font-size: 2rem; cursor: pointer; color: var(--accent); }
+    footer { text-align: center; padding: 40px 20px; background: var(--secondary); border-top: 1px solid var(--glass-border); }
+    .whatsapp-float { position: fixed; bottom: 30px; right: 30px; background: #25D366; color: white; padding: 18px 22px; border-radius: 60px; font-size: 28px; box-shadow: 0 8px 25px #25D366; transition: 0.25s; z-index: 999; line-height: 0; text-decoration: none; display: flex; align-items: center; justify-content: center; }
+    .toast { position: fixed; bottom: 100px; right: 30px; background: var(--accent); color: #0a0a0a; padding: 12px 22px; border-radius: 50px; font-weight: 400; font-size: 0.95rem; box-shadow: 0 5px 20px rgba(0,0,0,0.3); z-index: 1000; transform: translateY(100px); opacity: 0; transition: 0.3s; }
+    .toast.show { transform: translateY(0); opacity: 1; }
+    @media (max-width: 768px) { nav, .social-icons { display: none; } .hamburger { display: inline-block; } .portfolio-grid { grid-template-columns: 1fr; } .section-header h2 { font-size: 2.5rem; } }
+  </style>
+</head>
+<body>
+  <button id="backToTop" class="back-to-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+  <div class="overlay" id="overlay"></div>
+  <div class="toast" id="toast"></div>
+
+  <header>
+    <div class="logo-container"><a href="index.html"><img src="https://image2url.com/r2/default/images/1773866125912-9278f0fc-116c-4a9c-a40e-2efcedea9f4d.png" alt="CODE-X Logo" class="logo-img"><span class="logo-text">CODE-X</span></a></div>
+    <nav><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="faq.html">FAQ</a><a href="timeline.html">Timeline</a><a href="contact.html">Contact</a></nav>
+    <div class="menu-icons">
+      <div class="social-icons"><a href="https://github.com" target="_blank" class="social-icon"><i class="fab fa-github"></i></a><a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a><a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a><a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a></div>
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <i class="fas fa-bars hamburger" id="hamburgerBtn"></i>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <i class="fas fa-times close-btn" id="closeNavBtn"></i>
+    <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="portfolio.html">Portfolio</a><a href="faq.html">FAQ</a><a href="timeline.html">Timeline</a><a href="contact.html">Contact</a>
+    <div class="mobile-social-section"><div class="mobile-social-title"><i class="fas fa-share-alt"></i> Connect</div><div class="mobile-social-icons"><a href="https://github.com" target="_blank" class="mobile-social-icon"><i class="fab fa-github"></i></a><a href="https://linkedin.com" target="_blank" class="mobile-social-icon"><i class="fab fa-linkedin-in"></i></a><a href="https://twitter.com" target="_blank" class="mobile-social-icon"><i class="fab fa-x-twitter"></i></a><a href="https://instagram.com" target="_blank" class="mobile-social-icon"><i class="fab fa-instagram"></i></a><a href="https://wa.me/2349050786465" target="_blank" class="mobile-social-icon"><i class="fab fa-whatsapp"></i></a><a href="https://t.me/abdulmuiz" target="_blank" class="mobile-social-icon"><i class="fab fa-telegram"></i></a></div></div>
+  </div>
+
+  <div class="page-content">
+    <div class="section-header" data-aos="fade-up"><h2>My Portfolio</h2><p>Check out some of my recent work</p></div>
+    <div class="portfolio-filter" data-aos="fade-up"><button class="filter-btn active" data-filter="all">All</button><button class="filter-btn" data-filter="website">Websites</button><button class="filter-btn" data-filter="ecommerce">E-commerce</button><button class="filter-btn" data-filter="app">Web Apps</button></div>
+    <div class="portfolio-grid" id="portfolioGrid"></div>
+  </div>
+
+  <div class="modal" id="projectModal"><div class="modal-content"><span class="modal-close" onclick="closeModal()">&times;</span><h2 id="modalTitle"></h2><p id="modalDesc"></p><p id="modalTech"></p><a href="#" id="modalLink" target="_blank" class="btn" style="margin-top: 20px; display: inline-block;">View Project</a></div></div>
+
+  <footer><p>© 2026 CODE-X · Building Digital Experiences That Matter</p></footer>
+  <a href="https://wa.me/2349050786465?text=Hello%20CODE-X!%20I'm%20interested%20in%20your%20web%20development%20services." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+    
+    const portfolioItems = [
+      { title: "TechStart Solutions", category: "website", description: "Modern corporate website for a tech startup with responsive design and CMS integration.", tech: "React, Node.js, MongoDB", link: "#" },
+      { title: "FashionHub E-commerce", category: "ecommerce", description: "Full-featured online store with product management, cart, and payment integration.", tech: "React, Stripe, Firebase", link: "#" },
+      { title: "TaskFlow App", category: "app", description: "Productivity web app for task management with real-time updates.", tech: "Vue.js, Socket.io, Express", link: "#" },
+      { title: "Restaurant Website", category: "website", description: "Beautiful restaurant website with online ordering and reservation system.", tech: "HTML5, CSS3, JavaScript", link: "#" },
+      { title: "ShopSmart", category: "ecommerce", description: "Multi-vendor marketplace platform with seller dashboards.", tech: "Next.js, MongoDB, Stripe", link: "#" },
+      { title: "Analytics Dashboard", category: "app", description: "Interactive dashboard for business analytics and reporting.", tech: "React, D3.js, Express", link: "#" },
+      { title: "Portfolio Pro", category: "website", description: "Creative portfolio template for designers and artists.", tech: "HTML5, CSS3, GSAP", link: "#" },
+      { title: "HealthCare Plus", category: "app", description: "Telemedicine platform connecting patients with doctors.", tech: "React Native, Node.js, MongoDB", link: "#" }
+    ];
+
+    function renderPortfolio(filter = 'all') {
+      const grid = document.getElementById('portfolioGrid');
+      const filtered = filter === 'all' ? portfolioItems : portfolioItems.filter(item => item.category === filter);
+      grid.innerHTML = filtered.map((item, i) => `<div class="portfolio-item" data-aos="fade-up" data-aos-delay="${i * 50}" onclick="openModal('${item.title}', '${item.description}', '${item.tech}', '${item.link}')"><div class="portfolio-image"><i class="fas fa-code"></i></div><div class="portfolio-info"><h3>${item.title}</h3><p>${item.description.substring(0, 80)}...</p><div class="portfolio-tags"><span class="tag">${item.category}</span><span class="tag">${item.tech.split(',')[0]}</span></div></div></div>`).join('');
+    }
+    renderPortfolio();
+
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderPortfolio(btn.dataset.filter);
+      });
+    });
+
+    function openModal(title, desc, tech, link) {
+      document.getElementById('modalTitle').textContent = title;
+      document.getElementById('modalDesc').textContent = desc;
+      document.getElementById('modalTech').innerHTML = `<strong>Technologies:</strong> ${tech}`;
+      document.getElementById('modalLink').href = link;
+      document.getElementById('projectModal').classList.add('active');
+    }
+    function closeModal() { document.getElementById('projectModal').classList.remove('active'); }
+
+    // Theme toggle
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') { document.body.classList.add('light'); themeToggle.innerHTML = '<i class="fas fa-sun"></i>'; }
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      localStorage.setItem('theme', document.body.classList.contains('light') ? 'light' : 'dark');
+      themeToggle.innerHTML = document.body.classList.contains('light') ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // Back to top
+    const backToTop = document.getElementById('backToTop');
+    window.onscroll = () => { if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) backToTop.classList.add('show'); else backToTop.classList.remove('show'); };
+    window.scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Mobile menu
+    const mobileNav = document.getElementById('mobileNav'), hamburger = document.getElementById('hamburgerBtn'), closeBtn = document.getElementById('closeNavBtn'), overlay = document.getElementById('overlay');
+    window.openMenu = () => { mobileNav.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; };
+    window.closeMenu = () => { mobileNav.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; };
+    if (hamburger) hamburger.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    // Toast
+    const toast = document.getElementById('toast');
+    window.showToast = (m) => { toast.textContent = m; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 3000); };
+    document.querySelectorAll('.social-icon, .mobile-social-icon').forEach(icon => {
+      icon.addEventListener('click', (e) => { const platform = icon.querySelector('i').classList.contains('fa-github') ? 'GitHub' : icon.querySelector('i').classList.contains('fa-linkedin-in') ? 'LinkedIn' : icon.querySelector('i').classList.contains('fa-x-twitter') ? 'Twitter' : 'social'; showToast(`Opening ${platform}... 🔗`); });
+    });
+  </script>
+</body>
+</html>
