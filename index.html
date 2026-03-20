@@ -4,6 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>CODE-X · Web Development & Design</title>
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Professional web developer and UI/UX designer creating responsive websites, web applications, and digital experiences that matter. Available for freelance and full-time opportunities.">
+  <meta name="keywords" content="web developer, UI/UX designer, web design, responsive websites, e-commerce, React, Node.js, freelance developer">
+  <meta name="author" content="Abdulmuiz O.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourdomain.com">
+  <!-- Open Graph Tags -->
+  <meta property="og:title" content="CODE-X · Web Development & Design">
+  <meta property="og:description" content="Building Digital Experiences That Matter. Professional web development and design services.">
+  <meta property="og:type" content="website">
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="CODE-X Web Development">
   <!-- Google Fonts - Mooxy -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -30,18 +43,49 @@
       --shadow: 0 20px 35px -8px rgba(0,0,0,0.9);
       --font-heading: 'Mooxy', sans-serif;
       --font-body: 'Mooxy', sans-serif;
+      --contact-accent: #00ff9d;
+      --contact-glow: rgba(0, 255, 157, 0.5);
+      --counter-accent: #00ff9d;
+      --counter-glow: rgba(0, 255, 157, 0.5);
+    }
+
+    /* Light Mode */
+    body.light {
+      --bg: #f5f5f5;
+      --text: #1a1a1a;
+      --secondary: #ffffff;
+      --card-bg: rgba(0,0,0,0.02);
+      --glass-border: rgba(0,255,157,0.5);
+      --shadow: 0 20px 35px -8px rgba(0,0,0,0.1);
     }
 
     body {
       background: var(--bg);
       color: var(--text);
       font-family: var(--font-body);
+      transition: all 0.3s ease;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     h1, h2, h3, .logo-text {
       font-family: var(--font-heading);
       font-weight: 400;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00cc7a;
     }
 
     /* BACK TO TOP BUTTON */
@@ -100,6 +144,9 @@
       border-bottom: 1px solid var(--glass-border);
       z-index: 1000;
     }
+    body.light header {
+      background: rgba(255,255,255,0.9);
+    }
 
     /* Logo container with rounded image */
     .logo-container a {
@@ -147,6 +194,7 @@
       font-size: 1.1rem;
       position: relative;
       transition: 0.2s;
+      cursor: pointer;
     }
     nav a::after {
       content: '';
@@ -210,6 +258,61 @@
       box-shadow: 0 0 20px var(--accent);
     }
 
+    /* Dark/Light Mode Toggle */
+    .theme-toggle {
+      background: rgba(0, 255, 157, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+    }
+    .theme-toggle:hover {
+      background: var(--accent);
+      color: #0a0a0a;
+      transform: rotate(15deg);
+    }
+
+    /* Notification Bell */
+    .notification-bell {
+      position: relative;
+      cursor: pointer;
+      background: rgba(0, 255, 157, 0.1);
+      border: 1px solid var(--accent);
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.3s;
+    }
+    .notification-bell:hover {
+      background: var(--accent);
+      color: #0a0a0a;
+    }
+    .notification-bell .badge {
+      position: absolute;
+      top: -5px;
+      right: -5px;
+      background: #ff4444;
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
     /* mobile nav */
     .mobile-nav {
       position: fixed;
@@ -256,6 +359,7 @@
       border-bottom: 1px solid rgba(0,255,157,0.3);
       padding-bottom: 12px;
       transition: 0.2s;
+      cursor: pointer;
     }
     .mobile-nav a:hover {
       color: var(--accent);
@@ -324,15 +428,15 @@
       opacity: 1;
     }
 
-    /* Hero Section - Only what's shown in the image */
+    /* Hero Section */
     .hero {
-      min-height: 100vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       flex-direction: column;
-      padding: 0 20px;
+      padding: 150px 20px 80px;
     }
     .hero h1 {
       font-size: clamp(3rem, 9vw, 5.8rem);
@@ -344,12 +448,47 @@
       color: transparent;
       text-shadow: 0 0 35px rgba(0,255,157,0.3);
     }
-    .hero p {
+
+    /* Typing Animation */
+    .typed-text {
       font-size: 1.6rem;
       margin: 30px 0 40px;
       opacity: 0.9;
       font-weight: 300;
+      min-height: 80px;
     }
+    .typed-cursor {
+      font-size: 1.6rem;
+      color: var(--accent);
+      animation: blink 0.7s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Parallax Background */
+    .parallax-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      pointer-events: none;
+    }
+    .parallax-shape {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
+      opacity: 0.1;
+      animation: float 20s infinite ease-in-out;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      50% { transform: translateY(-20px) translateX(20px); }
+    }
+
     .btn-group { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; }
 
     .btn {
@@ -378,20 +517,436 @@
     .btn-primary:hover { background: #00cc7a; color: white; box-shadow: 0 0 45px #00cc7a; }
     .btn:hover { transform: scale(1.07) translateY(-4px); box-shadow: 0 0 35px var(--accent); }
 
+    .section-header {
+      text-align: center;
+      margin-bottom: 70px;
+    }
+    .section-header h2 {
+      font-size: 3.4rem;
+      background: linear-gradient(130deg, var(--accent), var(--primary), #00ff9d);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+    .section-header p { font-size: 1.3rem; opacity: 0.7; }
+
+    /* service cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 35px;
+    }
+    .card {
+      background: var(--card-bg);
+      padding: 50px 25px;
+      border-radius: 32px;
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--glass-border);
+      transition: 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2);
+      text-align: center;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: var(--y, 50%);
+      left: var(--x, 50%);
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(0,255,157,0.3) 0%, transparent 70%);
+      transform: translate(-50%, -50%) scale(0);
+      transition: transform 0.4s ease;
+      pointer-events: none;
+    }
+    .card:hover::before {
+      transform: translate(-50%, -50%) scale(1);
+    }
+    .card i {
+      font-size: 3.5rem;
+      color: var(--accent);
+      margin-bottom: 25px;
+      text-shadow: 0 0 25px var(--accent);
+      transition: transform 0.3s ease;
+    }
+    .card:hover i {
+      transform: scale(1.1) rotate(5deg);
+    }
+    .card h3 { font-size: 2rem; margin-bottom: 12px; }
+    .card p { opacity: 0.7; font-size: 1rem; }
+    .card:hover {
+      transform: translateY(-20px) scale(1.02);
+      border-color: var(--accent);
+      box-shadow: 0 35px 50px -12px var(--accent);
+    }
+
+    /* Counter Section */
+    .counter-section {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 80px;
+      padding: 60px;
+      margin: 60px 0;
+      border: 2px solid var(--counter-accent);
+      box-shadow: 0 0 50px var(--counter-glow);
+    }
+
+    .counter-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      text-align: center;
+    }
+
+    .counter-item {
+      padding: 30px;
+      background: rgba(0, 255, 157, 0.05);
+      border-radius: 50px;
+      transition: all 0.4s ease;
+      border: 1px solid rgba(0, 255, 157, 0.2);
+    }
+
+    .counter-item:hover {
+      transform: translateY(-15px);
+      background: rgba(0, 255, 157, 0.1);
+      border-color: var(--counter-accent);
+      box-shadow: 0 0 40px var(--counter-glow);
+    }
+
+    .counter-icon {
+      font-size: 3.5rem;
+      color: var(--counter-accent);
+      margin-bottom: 20px;
+      text-shadow: 0 0 30px var(--counter-glow);
+    }
+
+    .counter-number {
+      font-size: 4.5rem;
+      font-weight: 400;
+      color: var(--counter-accent);
+      font-family: var(--font-heading);
+      line-height: 1.2;
+      text-shadow: 0 0 20px var(--counter-glow);
+    }
+
+    .counter-label {
+      font-size: 1.3rem;
+      opacity: 0.9;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    .counter-plus {
+      font-size: 3rem;
+      color: var(--counter-accent);
+      opacity: 0.7;
+      margin-left: 5px;
+    }
+
+    /* Newsletter Section */
+    .newsletter-section {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 80px;
+      padding: 70px;
+      margin: 60px 0;
+      border: 2px solid var(--accent);
+      box-shadow: 0 0 50px var(--accent);
+      text-align: center;
+    }
+
+    .newsletter-icon {
+      font-size: 4rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      text-shadow: 0 0 30px var(--accent);
+      animation: shake 3s ease-in-out infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      10% { transform: rotate(15deg); }
+      20% { transform: rotate(-15deg); }
+      30% { transform: rotate(10deg); }
+      40% { transform: rotate(-10deg); }
+      50% { transform: rotate(5deg); }
+      60% { transform: rotate(0deg); }
+    }
+
+    .newsletter-title {
+      font-size: 2.8rem;
+      margin-bottom: 15px;
+      background: linear-gradient(135deg, var(--accent), #00cc7a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .newsletter-subtitle {
+      font-size: 1.2rem;
+      opacity: 0.8;
+      margin-bottom: 40px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .newsletter-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 15px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 18px 25px;
+      background: rgba(0,0,0,0.2);
+      border: 2px solid var(--accent);
+      border-radius: 60px;
+      color: var(--text);
+      font-size: 1rem;
+      font-family: var(--font-body);
+      transition: 0.3s;
+    }
+
+    .newsletter-input:focus {
+      outline: none;
+      box-shadow: 0 0 30px var(--accent);
+      background: rgba(0, 255, 157, 0.1);
+    }
+
+    .newsletter-btn {
+      padding: 18px 35px;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 60px;
+      font-size: 1rem;
+      font-weight: 400;
+      cursor: pointer;
+      transition: 0.3s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .newsletter-btn:hover {
+      background: #00cc7a;
+      color: white;
+      transform: scale(1.05);
+      box-shadow: 0 0 30px var(--accent);
+    }
+
+    .newsletter-checkbox {
+      margin-top: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    /* FAQ Section */
+    .faq-section {
+      background: var(--card-bg);
+      backdrop-filter: blur(14px);
+      border-radius: 50px;
+      padding: 60px;
+      margin: 60px 0;
+      border: 2px solid var(--accent);
+    }
+    .faq-item {
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(0,255,157,0.2);
+    }
+    .faq-question {
+      padding: 20px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+    .faq-question:hover {
+      color: var(--accent);
+    }
+    .faq-answer {
+      padding: 0 20px 20px 20px;
+      display: none;
+      line-height: 1.6;
+    }
+    .faq-answer.active {
+      display: block;
+    }
+
+    /* Quiz Container */
+    .quiz-container {
+      background: var(--card-bg);
+      border-radius: 30px;
+      padding: 40px;
+      margin: 40px 0;
+      border: 1px solid var(--glass-border);
+    }
+    .quiz-question {
+      font-size: 1.3rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+    .quiz-options {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 30px;
+    }
+    .quiz-option {
+      padding: 12px 24px;
+      background: rgba(0,255,157,0.1);
+      border: 1px solid var(--accent);
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .quiz-option:hover {
+      background: var(--accent);
+      color: #0a0a0a;
+    }
+    .quiz-result {
+      margin-top: 20px;
+      padding: 20px;
+      background: rgba(0,255,157,0.1);
+      border-radius: 20px;
+      display: none;
+    }
+    .quiz-result.active {
+      display: block;
+    }
+
+    /* AI Chatbot */
+    .chatbot-widget {
+      position: fixed;
+      bottom: 100px;
+      left: 30px;
+      z-index: 998;
+    }
+    .chatbot-button {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      cursor: pointer;
+      font-size: 1.8rem;
+      box-shadow: 0 0 20px var(--accent);
+      transition: 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .chatbot-button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 30px var(--accent);
+    }
+    .chatbot-container {
+      position: fixed;
+      bottom: 180px;
+      left: 30px;
+      width: 350px;
+      height: 500px;
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 2px solid var(--accent);
+      border-radius: 20px;
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 999;
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    }
+    .chatbot-container.active {
+      display: flex;
+    }
+    .chatbot-header {
+      background: var(--accent);
+      color: #0a0a0a;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .chatbot-header button {
+      background: none;
+      border: none;
+      color: #0a0a0a;
+      cursor: pointer;
+      font-size: 1.2rem;
+    }
+    .chatbot-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 15px;
+    }
+    .message {
+      margin-bottom: 15px;
+      display: flex;
+    }
+    .message.user {
+      justify-content: flex-end;
+    }
+    .message.bot {
+      justify-content: flex-start;
+    }
+    .message-content {
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 20px;
+      background: var(--card-bg);
+      border: 1px solid var(--accent);
+    }
+    .message.user .message-content {
+      background: var(--accent);
+      color: #0a0a0a;
+    }
+    .chatbot-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid var(--accent);
+    }
+    .chatbot-input input {
+      flex: 1;
+      padding: 10px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--accent);
+      border-radius: 20px;
+      color: var(--text);
+    }
+    .chatbot-input button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      background: var(--accent);
+      color: #0a0a0a;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
     footer {
       text-align: center;
-      padding: 20px;
+      padding: 40px 20px;
       background: var(--secondary);
       border-top: 1px solid var(--glass-border);
       font-size: 1rem;
-      position: fixed;
-      bottom: 0;
-      width: 100%;
     }
 
     .whatsapp-float {
       position: fixed;
-      bottom: 80px;
+      bottom: 30px;
       right: 30px;
       background: #25D366;
       color: white;
@@ -435,7 +990,46 @@
       opacity: 1;
     }
 
+    /* Page Transitions */
+    .page-content {
+      animation: fadeInUp 0.6s ease-out;
+    }
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     /* responsive */
+    @media (max-width: 900px) {
+      .counter-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .counter-number {
+        font-size: 3.5rem;
+      }
+      .newsletter-form {
+        flex-direction: column;
+      }
+      .newsletter-btn {
+        width: 100%;
+        justify-content: center;
+      }
+      .chatbot-container {
+        width: 300px;
+        left: 20px;
+      }
+      .faq-section {
+        padding: 30px;
+      }
+    }
+    
     @media (max-width: 768px) {
       nav { display: none; }
       .social-icons { display: none; }
@@ -443,20 +1037,44 @@
       header { padding: 18px 20px; }
       .logo-text { font-size: 1.4rem; }
       .logo-img { width: 40px; height: 40px; }
+      section { padding: 100px 20px; }
+      .section-header h2 { font-size: 2.5rem; }
       .hero p { font-size: 1.3rem; }
+      .typed-text { font-size: 1.2rem; }
       .whatsapp-float {
-        bottom: 70px;
+        bottom: 20px;
         right: 20px;
         padding: 15px 18px;
         font-size: 24px;
       }
-      footer {
+      .back-to-top {
+        bottom: 80px;
+        right: 20px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.5rem;
+      }
+      .newsletter-section {
+        padding: 40px 20px;
+      }
+      .newsletter-title {
+        font-size: 2rem;
+      }
+      .counter-section {
+        padding: 40px 20px;
+      }
+      .quiz-container {
+        padding: 20px;
+      }
+      .quiz-question {
+        font-size: 1.1rem;
+      }
+      .quiz-option {
+        padding: 8px 16px;
         font-size: 0.9rem;
-        padding: 15px;
       }
     }
 
-    /* Image loading optimization */
     img {
       max-width: 100%;
       height: auto;
@@ -465,15 +1083,33 @@
   </style>
 </head>
 <body>
-  <!-- BACK TO TOP BUTTON -->
-  <button id="backToTop" class="back-to-top" onclick="scrollToTop()">
-    <i class="fas fa-arrow-up"></i>
-  </button>
+  <!-- Parallax Background -->
+  <div class="parallax-bg" id="parallaxBg"></div>
 
-  <!-- Overlay for mobile menu -->
+  <!-- BACK TO TOP BUTTON -->
+  <button id="backToTop" class="back-to-top" onclick="scrollToTop()"><i class="fas fa-arrow-up"></i></button>
+
+  <!-- AI Chatbot Widget -->
+  <div class="chatbot-widget">
+    <button class="chatbot-button" id="chatbotBtn"><i class="fas fa-robot"></i></button>
+    <div class="chatbot-container" id="chatbotContainer">
+      <div class="chatbot-header">
+        <span><i class="fas fa-robot"></i> AI Assistant</span>
+        <button onclick="closeChatbot()"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot">
+          <div class="message-content">Hi! I'm CODE-X AI assistant. How can I help you today? Ask me about services, pricing, or timeline!</div>
+        </div>
+      </div>
+      <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Type your message..." onkeypress="handleChatKeypress(event)">
+        <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
   <div class="overlay" id="overlay"></div>
-  
-  <!-- Toast notification -->
   <div class="toast" id="toast">Welcome to CODE-X! 🚀</div>
 
   <header>
@@ -484,42 +1120,43 @@
       </a>
     </div>
     
-    <!-- Desktop Navigation - Links to separate pages -->
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="faq.html">FAQ</a>
+      <a href="timeline.html">Timeline</a>
       <a href="contact.html">Contact</a>
     </nav>
     
     <div class="menu-icons">
-      <!-- Social Icons in Header -->
       <div class="social-icons">
         <a href="https://github.com" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
         <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
         <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-x-twitter"></i></a>
         <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
       </div>
-      
+      <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon"></i></button>
+      <div class="notification-bell" id="notificationBell">
+        <i class="fas fa-bell"></i>
+        <span class="badge" id="notificationBadge" style="display: none;">!</span>
+      </div>
       <i class="fas fa-bars hamburger" id="hamburgerBtn"></i>
     </div>
   </header>
 
-  <!-- mobile nav -->
   <div class="mobile-nav" id="mobileNav">
     <i class="fas fa-times close-btn" id="closeNavBtn"></i>
-    
-    <!-- Navigation Links -->
     <a href="index.html" onclick="closeMenu()">Home</a>
     <a href="about.html" onclick="closeMenu()">About</a>
     <a href="services.html" onclick="closeMenu()">Services</a>
+    <a href="portfolio.html" onclick="closeMenu()">Portfolio</a>
+    <a href="faq.html" onclick="closeMenu()">FAQ</a>
+    <a href="timeline.html" onclick="closeMenu()">Timeline</a>
     <a href="contact.html" onclick="closeMenu()">Contact</a>
-    
-    <!-- Social Icons in Mobile -->
     <div class="mobile-social-section">
-      <div class="mobile-social-title">
-        <i class="fas fa-share-alt"></i> Connect With Me
-      </div>
+      <div class="mobile-social-title"><i class="fas fa-share-alt"></i> Connect With Me</div>
       <div class="mobile-social-icons">
         <a href="https://github.com" target="_blank" class="mobile-social-icon"><i class="fab fa-github"></i></a>
         <a href="https://linkedin.com" target="_blank" class="mobile-social-icon"><i class="fab fa-linkedin-in"></i></a>
@@ -531,122 +1168,392 @@
     </div>
   </div>
 
-  <!-- MAIN CONTENT - Only Hero Section as shown in the image -->
-  <div class="main-content">
-    <!-- HERO - exactly as shown in the image -->
+  <div class="page-content">
+    <!-- HERO SECTION -->
     <section class="hero">
       <h1 data-aos="fade-up">CODE-X Web Development</h1>
-      <p data-aos="fade-up" data-aos-delay="200">Building Digital Experiences That Matter</p>
+      <div class="typed-text" id="typedText"></div>
       <div class="btn-group" data-aos="fade-up" data-aos-delay="400">
         <a href="contact.html" class="btn btn-primary">Start Your Project</a>
         <a href="services.html" class="btn">View Services</a>
+        <a href="portfolio.html" class="btn">View Portfolio</a>
+      </div>
+    </section>
+
+    <!-- COUNTERS SECTION -->
+    <section>
+      <div class="counter-section" data-aos="fade-up">
+        <div class="counter-grid">
+          <div class="counter-item" data-aos="zoom-in" data-aos-delay="100">
+            <i class="fas fa-code counter-icon"></i>
+            <div><span class="counter-number" id="counter1" data-target="2020">0</span></div>
+            <div class="counter-label">Started Coding</div>
+          </div>
+          <div class="counter-item" data-aos="zoom-in" data-aos-delay="200">
+            <i class="fas fa-laptop-code counter-icon"></i>
+            <div><span class="counter-number" id="counter2" data-target="50">0</span><span class="counter-plus">+</span></div>
+            <div class="counter-label">Websites Built</div>
+          </div>
+          <div class="counter-item" data-aos="zoom-in" data-aos-delay="300">
+            <i class="fas fa-smile counter-icon"></i>
+            <div><span class="counter-number" id="counter3" data-target="100">0</span><span class="counter-plus">%</span></div>
+            <div class="counter-label">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS QUIZ SECTION -->
+    <section>
+      <div class="section-header" data-aos="fade-up">
+        <h2>Find Your Perfect Service</h2>
+        <p>Take our quick quiz to discover what service best fits your needs</p>
+      </div>
+      <div class="quiz-container" data-aos="fade-up">
+        <div id="quiz">
+          <div class="quiz-question">1. What type of project are you looking for?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="answerQuiz(1, 'website')">Website</div>
+            <div class="quiz-option" onclick="answerQuiz(1, 'app')">Web App</div>
+            <div class="quiz-option" onclick="answerQuiz(1, 'ecommerce')">E-commerce</div>
+            <div class="quiz-option" onclick="answerQuiz(1, 'design')">UI/UX Design</div>
+          </div>
+          <div class="quiz-question">2. What's your timeline?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="answerQuiz(2, 'urgent')">Urgent (1-2 weeks)</div>
+            <div class="quiz-option" onclick="answerQuiz(2, 'normal')">Normal (1 month)</div>
+            <div class="quiz-option" onclick="answerQuiz(2, 'flexible')">Flexible (2+ months)</div>
+          </div>
+          <div class="quiz-question">3. What's your budget range?</div>
+          <div class="quiz-options">
+            <div class="quiz-option" onclick="answerQuiz(3, 'low')">₦50k - ₦100k</div>
+            <div class="quiz-option" onclick="answerQuiz(3, 'medium')">₦100k - ₦300k</div>
+            <div class="quiz-option" onclick="answerQuiz(3, 'high')">₦300k+</div>
+          </div>
+        </div>
+        <div class="quiz-result" id="quizResult"></div>
+      </div>
+    </section>
+
+    <!-- FAQ PREVIEW SECTION -->
+    <section>
+      <div class="faq-section" data-aos="fade-up">
+        <div class="section-header">
+          <h2>Frequently Asked Questions</h2>
+          <p>Answers to common questions about my services</p>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">How long does a typical project take? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Project timelines vary based on complexity. A simple website takes 1-2 weeks, while complex web applications may take 4-8 weeks. I'll provide a detailed timeline during our consultation.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">What's your pricing structure? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">I offer flexible pricing based on project scope. Basic websites start from ₦100k, while custom web applications start from ₦300k. Contact me for a detailed quote.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFAQ(this)">Do you provide maintenance after launch? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-answer">Yes! I offer maintenance packages that include updates, security patches, backups, and technical support. Ask about my monthly maintenance plans.</div>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+          <a href="faq.html" class="btn">View All FAQs →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- NEWSLETTER SECTION -->
+    <section id="newsletter">
+      <div class="newsletter-section" data-aos="fade-up">
+        <i class="fas fa-code newsletter-icon"></i>
+        <h2 class="newsletter-title">Get Web Dev Tips & Insights</h2>
+        <p class="newsletter-subtitle">Subscribe to my newsletter for coding tips, design inspiration, and exclusive offers on web development services.</p>
+        <form id="newsletterForm" class="newsletter-form" action="https://formspree.io/f/xvgojbgw" method="POST">
+          <input type="email" id="newsletterEmail" name="email" class="newsletter-input" placeholder="Your email address" required>
+          <input type="hidden" name="_subject" value="New Newsletter Subscription from CODE-X">
+          <input type="hidden" name="_replyto" value="abdulmuizomotolani@gmail.com">
+          <button type="submit" class="newsletter-btn"><i class="fas fa-paper-plane"></i> Subscribe</button>
+        </form>
+        <div class="newsletter-checkbox">
+          <input type="checkbox" id="privacyConsent" checked>
+          <label for="privacyConsent">I agree to receive newsletters and accept the privacy policy</label>
+        </div>
+        <p style="font-size: 0.8rem; opacity: 0.5; margin-top: 20px;">
+          <i class="fas fa-shield-alt"></i> No spam, just valuable content. Unsubscribe anytime.
+        </p>
       </div>
     </section>
   </div>
 
-  <footer>
-    <p>© 2026 CODE-X · Building Digital Experiences That Matter</p>
-  </footer>
+  <footer><p>© 2026 CODE-X · Building Digital Experiences That Matter</p></footer>
+  <a href="https://wa.me/2349050786465?text=Hello%20CODE-X!%20I'm%20interested%20in%20your%20web%20development%20services." class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
 
-  <!-- WhatsApp Button -->
-  <a href="https://wa.me/2349050786465?text=Hello%20CODE-X!%20I'm%20interested%20in%20your%20web%20development%20services." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
-    <i class="fab fa-whatsapp"></i>
-  </a>
-
-  <!-- AOS Animation Library -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // Initialize AOS
-    AOS.init({
-      duration: 800,
-      once: true,
-      offset: 100
-    });
+    AOS.init({ duration: 800, once: true, offset: 100 });
 
-    // Wait for DOM to load
-    document.addEventListener('DOMContentLoaded', function() {
-      
-      // ========== BACK TO TOP BUTTON ==========
-      const backToTop = document.getElementById('backToTop');
-      
-      window.onscroll = function() {
-        if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
-          backToTop.classList.add('show');
-        } else {
-          backToTop.classList.remove('show');
-        }
-      };
-      
-      window.scrollToTop = function() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      };
-      
-      // ========== TOAST NOTIFICATION ==========
-      const toast = document.getElementById('toast');
-      
-      window.showToast = function(message) {
-        if (toast) {
-          toast.textContent = message;
-          toast.classList.add('show');
-          setTimeout(() => toast.classList.remove('show'), 3000);
-        }
+    // ========== TYPING ANIMATION ==========
+    const roles = ["Full-Stack Developer", "UI/UX Designer", "Web Application Expert", "Creative Problem Solver"];
+    let roleIndex = 0, charIndex = 0, isDeleting = false;
+    const typedTextElement = document.getElementById('typedText');
+
+    function typeEffect() {
+      const currentRole = roles[roleIndex];
+      if (isDeleting) {
+        typedTextElement.innerHTML = currentRole.substring(0, charIndex - 1);
+        charIndex--;
+      } else {
+        typedTextElement.innerHTML = currentRole.substring(0, charIndex + 1);
+        charIndex++;
       }
-
-      // Show welcome toast
-      setTimeout(() => showToast('Welcome to CODE-X! 🚀'), 1000);
-
-      // ========== MOBILE MENU FUNCTIONALITY ==========
-      const mobileNav = document.getElementById('mobileNav');
-      const hamburger = document.getElementById('hamburgerBtn');
-      const closeBtn = document.getElementById('closeNavBtn');
-      const overlay = document.getElementById('overlay');
-
-      window.openMenu = function() {
-        mobileNav.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
+      if (!isDeleting && charIndex === currentRole.length) {
+        isDeleting = true;
+        setTimeout(typeEffect, 2000);
+      } else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        roleIndex = (roleIndex + 1) % roles.length;
+        setTimeout(typeEffect, 500);
+      } else {
+        setTimeout(typeEffect, isDeleting ? 50 : 100);
       }
+    }
+    typeEffect();
 
-      window.closeMenu = function() {
-        mobileNav.classList.remove('active');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+    // ========== PARALLAX BACKGROUND ==========
+    function createParallaxShapes() {
+      const container = document.getElementById('parallaxBg');
+      for (let i = 0; i < 10; i++) {
+        const shape = document.createElement('div');
+        shape.className = 'parallax-shape';
+        const size = Math.random() * 100 + 50;
+        shape.style.width = size + 'px';
+        shape.style.height = size + 'px';
+        shape.style.left = Math.random() * 100 + '%';
+        shape.style.top = Math.random() * 100 + '%';
+        shape.style.animationDelay = Math.random() * 10 + 's';
+        shape.style.animationDuration = Math.random() * 20 + 15 + 's';
+        container.appendChild(shape);
       }
+    }
+    createParallaxShapes();
 
-      if (hamburger) hamburger.addEventListener('click', openMenu);
-      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
-      if (overlay) overlay.addEventListener('click', closeMenu);
-
-      // ========== WHATSAPP BUTTON WITH TOAST ==========
-      const whatsappBtn = document.querySelector('.whatsapp-float');
-      
-      if (whatsappBtn) {
-        whatsappBtn.addEventListener('click', function(e) {
-          e.preventDefault();
-          showToast('Opening WhatsApp... 💬');
-          setTimeout(() => window.open(this.href, '_blank'), 500);
-        });
-      }
-
-      // ========== FIX FOR LOGO IMAGE ERROR ==========
-      const logoImg = document.querySelector('.logo-img');
-      if (logoImg) {
-        logoImg.onerror = function() { this.style.display = 'none'; };
-      }
-
-      // ========== SOCIAL ICON TOASTS ==========
-      document.querySelectorAll('.social-icon, .mobile-social-icon').forEach(icon => {
-        icon.addEventListener('click', function(e) {
-          const platform = this.querySelector('i').classList.contains('fa-github') ? 'GitHub' :
-                          this.querySelector('i').classList.contains('fa-linkedin-in') ? 'LinkedIn' :
-                          this.querySelector('i').classList.contains('fa-x-twitter') ? 'Twitter' :
-                          this.querySelector('i').classList.contains('fa-instagram') ? 'Instagram' :
-                          this.querySelector('i').classList.contains('fa-whatsapp') ? 'WhatsApp' :
-                          this.querySelector('i').classList.contains('fa-telegram') ? 'Telegram' : 'social';
-          showToast(`Opening ${platform}... 🔗`);
-        });
+    document.addEventListener('mousemove', (e) => {
+      const shapes = document.querySelectorAll('.parallax-shape');
+      const mouseX = e.clientX / window.innerWidth;
+      const mouseY = e.clientY / window.innerHeight;
+      shapes.forEach((shape, index) => {
+        const speed = 0.02 + (index * 0.005);
+        const x = (mouseX - 0.5) * 100 * speed;
+        const y = (mouseY - 0.5) * 100 * speed;
+        shape.style.transform = `translate(${x}px, ${y}px)`;
       });
     });
+
+    // ========== GLOWING CARD EFFECT ==========
+    document.querySelectorAll('.card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--x', `${x}px`);
+        card.style.setProperty('--y', `${y}px`);
+      });
+    });
+
+    // ========== ANIMATED COUNTERS ==========
+    function animateCounter(element, start, end, duration) {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        element.textContent = Math.floor(progress * (end - start) + start);
+        if (progress < 1) window.requestAnimationFrame(step);
+        else element.textContent = end;
+      };
+      window.requestAnimationFrame(step);
+    }
+
+    function isElementInViewport(element) {
+      const rect = element.getBoundingClientRect();
+      return rect.top < window.innerHeight - 100 && rect.bottom > 0;
+    }
+
+    const counterSection = document.querySelector('.counter-section');
+    const counter1 = document.getElementById('counter1');
+    const counter2 = document.getElementById('counter2');
+    const counter3 = document.getElementById('counter3');
+    let countersAnimated = false;
+
+    function checkCounters() {
+      if (!countersAnimated && counterSection && isElementInViewport(counterSection)) {
+        animateCounter(counter1, 0, parseInt(counter1.dataset.target), 2000);
+        animateCounter(counter2, 0, parseInt(counter2.dataset.target), 2000);
+        animateCounter(counter3, 0, parseInt(counter3.dataset.target), 2000);
+        countersAnimated = true;
+        window.removeEventListener('scroll', checkCounters);
+      }
+    }
+    window.addEventListener('scroll', checkCounters);
+    checkCounters();
+    setTimeout(checkCounters, 500);
+
+    // ========== DARK/LIGHT MODE ==========
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'light') {
+      document.body.classList.add('light');
+      themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      localStorage.setItem('theme', isLight ? 'light' : 'dark');
+      themeToggle.innerHTML = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    });
+
+    // ========== PUSH NOTIFICATIONS ==========
+    const notificationBell = document.getElementById('notificationBell');
+    let notificationPermission = false;
+    async function requestNotificationPermission() {
+      if ('Notification' in window) {
+        const permission = await Notification.requestPermission();
+        notificationPermission = permission === 'granted';
+        if (notificationPermission) {
+          document.getElementById('notificationBadge').style.display = 'none';
+          new Notification('CODE-X Updates', {
+            body: 'You will receive notifications about new content and offers!',
+            icon: 'https://image2url.com/r2/default/images/1773866125912-9278f0fc-116c-4a9c-a40e-2efcedea9f4d.png'
+          });
+        }
+      }
+    }
+    notificationBell.addEventListener('click', requestNotificationPermission);
+
+    // ========== AI CHATBOT ==========
+    const chatbotBtn = document.getElementById('chatbotBtn');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+
+    window.openChatbot = () => chatbotContainer.classList.add('active');
+    window.closeChatbot = () => chatbotContainer.classList.remove('active');
+    chatbotBtn.addEventListener('click', openChatbot);
+
+    function addMessage(message, isUser) {
+      const messageDiv = document.createElement('div');
+      messageDiv.className = `message ${isUser ? 'user' : 'bot'}`;
+      messageDiv.innerHTML = `<div class="message-content">${message}</div>`;
+      chatbotMessages.appendChild(messageDiv);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function getBotResponse(message) {
+      const lowerMsg = message.toLowerCase();
+      if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('budget')) {
+        return "💲 Pricing varies by project. Basic websites start at ₦100k, e-commerce from ₦200k, and web apps from ₦300k. Contact me for a custom quote!";
+      } else if (lowerMsg.includes('timeline') || lowerMsg.includes('time') || lowerMsg.includes('how long')) {
+        return "⏱️ Project timelines depend on complexity. A simple website takes 1-2 weeks, while complex apps take 4-8 weeks.";
+      } else if (lowerMsg.includes('service') || lowerMsg.includes('offer')) {
+        return "🛠️ I offer: Responsive Websites, E-commerce, UI/UX Design, Web Applications, Mobile Apps, and SEO Optimization.";
+      } else if (lowerMsg.includes('contact') || lowerMsg.includes('reach')) {
+        return "📧 You can reach me at abdulmuizomotolani@gmail.com, WhatsApp: +234 905 078 6465, or Telegram: @abdulmuiz";
+      } else if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
+        return "Hello! 👋 I'm the CODE-X AI assistant. How can I help you today?";
+      } else {
+        return "Thanks for your message! For detailed inquiries, please email abdulmuizomotolani@gmail.com or fill out the contact form.";
+      }
+    }
+
+    window.sendChatMessage = () => {
+      const message = chatbotInput.value.trim();
+      if (!message) return;
+      addMessage(message, true);
+      chatbotInput.value = '';
+      setTimeout(() => addMessage(getBotResponse(message), false), 500);
+    };
+    window.handleChatKeypress = (e) => { if (e.key === 'Enter') sendChatMessage(); };
+
+    // ========== SKILLS QUIZ ==========
+    const quizAnswers = {};
+    function answerQuiz(question, answer) {
+      quizAnswers[question] = answer;
+      if (Object.keys(quizAnswers).length === 3) showQuizResult();
+    }
+    function showQuizResult() {
+      const resultDiv = document.getElementById('quizResult');
+      let recommendation = '';
+      if (quizAnswers[1] === 'website' && quizAnswers[2] === 'urgent') {
+        recommendation = "Based on your answers, I recommend my **Express Website Package**! This includes a fully responsive 5-page website delivered in 1 week. Starting from ₦150k.";
+      } else if (quizAnswers[1] === 'ecommerce') {
+        recommendation = "Based on your answers, I recommend my **E-commerce Solution**! Custom online store with payment integration, starting from ₦250k.";
+      } else if (quizAnswers[1] === 'app') {
+        recommendation = "Based on your answers, I recommend my **Web Application Development** service! Starting from ₦350k.";
+      } else {
+        recommendation = "Based on your answers, I recommend scheduling a free consultation to discuss your specific needs. Contact me to get a personalized quote!";
+      }
+      resultDiv.innerHTML = `<i class="fas fa-lightbulb"></i> ${recommendation}<br><br><a href="contact.html" class="btn" style="margin-top: 15px;">Get a Free Quote →</a>`;
+      resultDiv.classList.add('active');
+    }
+
+    // ========== FAQ TOGGLE ==========
+    window.toggleFAQ = (element) => {
+      const answer = element.nextElementSibling;
+      answer.classList.toggle('active');
+      const icon = element.querySelector('i');
+      icon.style.transform = answer.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0)';
+    };
+
+    // ========== BACK TO TOP ==========
+    const backToTop = document.getElementById('backToTop');
+    window.onscroll = () => {
+      if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        backToTop.classList.add('show');
+      } else {
+        backToTop.classList.remove('show');
+      }
+    };
+    window.scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // ========== MOBILE MENU ==========
+    const mobileNav = document.getElementById('mobileNav');
+    const hamburger = document.getElementById('hamburgerBtn');
+    const closeBtn = document.getElementById('closeNavBtn');
+    const overlay = document.getElementById('overlay');
+    window.openMenu = () => { mobileNav.classList.add('active'); overlay.classList.add('active'); document.body.style.overflow = 'hidden'; };
+    window.closeMenu = () => { mobileNav.classList.remove('active'); overlay.classList.remove('active'); document.body.style.overflow = ''; };
+    if (hamburger) hamburger.addEventListener('click', openMenu);
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    if (overlay) overlay.addEventListener('click', closeMenu);
+
+    // ========== TOAST NOTIFICATIONS ==========
+    const toast = document.getElementById('toast');
+    window.showToast = (message) => {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 3000);
+    };
+    setTimeout(() => showToast('Welcome to CODE-X! 🚀'), 1000);
+
+    // Social icon toasts
+    document.querySelectorAll('.social-icon, .mobile-social-icon').forEach(icon => {
+      icon.addEventListener('click', (e) => {
+        const platform = icon.querySelector('i').classList.contains('fa-github') ? 'GitHub' :
+                         icon.querySelector('i').classList.contains('fa-linkedin-in') ? 'LinkedIn' :
+                         icon.querySelector('i').classList.contains('fa-x-twitter') ? 'Twitter' :
+                         icon.querySelector('i').classList.contains('fa-instagram') ? 'Instagram' :
+                         icon.querySelector('i').classList.contains('fa-whatsapp') ? 'WhatsApp' :
+                         icon.querySelector('i').classList.contains('fa-telegram') ? 'Telegram' : 'social';
+        showToast(`Opening ${platform}... 🔗`);
+      });
+    });
+
+    // Logo error fix
+    const logoImg = document.querySelector('.logo-img');
+    if (logoImg) logoImg.onerror = () => logoImg.style.display = 'none';
+
+    // Newsletter form
+    const newsletterForm = document.getElementById('newsletterForm');
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', () => setTimeout(() => showToast('Thanks for subscribing! 📧'), 100));
+    }
   </script>
 </body>
 </html>
