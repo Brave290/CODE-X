@@ -857,8 +857,8 @@
       position: fixed;
       bottom: 180px;
       left: 30px;
-      width: 350px;
-      height: 500px;
+      width: 380px;
+      height: 550px;
       background: var(--card-bg);
       backdrop-filter: blur(20px);
       border: 2px solid var(--accent);
@@ -903,11 +903,13 @@
       justify-content: flex-start;
     }
     .message-content {
-      max-width: 80%;
-      padding: 10px 15px;
+      max-width: 85%;
+      padding: 12px 16px;
       border-radius: 20px;
       background: var(--card-bg);
       border: 1px solid var(--accent);
+      font-size: 0.95rem;
+      line-height: 1.5;
     }
     .message.user .message-content {
       background: var(--accent);
@@ -920,19 +922,20 @@
     }
     .chatbot-input input {
       flex: 1;
-      padding: 10px;
+      padding: 12px;
       background: rgba(0,0,0,0.2);
       border: 1px solid var(--accent);
-      border-radius: 20px;
+      border-radius: 25px;
       color: var(--text);
+      font-family: var(--font-body);
     }
     .chatbot-input button {
       margin-left: 10px;
-      padding: 10px 15px;
+      padding: 12px 18px;
       background: var(--accent);
       color: #0a0a0a;
       border: none;
-      border-radius: 20px;
+      border-radius: 25px;
       cursor: pointer;
     }
 
@@ -1022,7 +1025,8 @@
         justify-content: center;
       }
       .chatbot-container {
-        width: 300px;
+        width: 320px;
+        height: 500px;
         left: 20px;
       }
       .faq-section {
@@ -1037,9 +1041,8 @@
       header { padding: 18px 20px; }
       .logo-text { font-size: 1.4rem; }
       .logo-img { width: 40px; height: 40px; }
-      section { padding: 100px 20px; }
+      .hero { padding: 120px 20px 60px; }
       .section-header h2 { font-size: 2.5rem; }
-      .hero p { font-size: 1.3rem; }
       .typed-text { font-size: 1.2rem; }
       .whatsapp-float {
         bottom: 20px;
@@ -1073,6 +1076,17 @@
         padding: 8px 16px;
         font-size: 0.9rem;
       }
+      .chatbot-container {
+        width: 300px;
+        height: 480px;
+        left: 15px;
+        bottom: 160px;
+      }
+      .chatbot-button {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+      }
     }
 
     img {
@@ -1094,16 +1108,16 @@
     <button class="chatbot-button" id="chatbotBtn"><i class="fas fa-robot"></i></button>
     <div class="chatbot-container" id="chatbotContainer">
       <div class="chatbot-header">
-        <span><i class="fas fa-robot"></i> AI Assistant</span>
+        <span><i class="fas fa-robot"></i> CODE-X AI Assistant</span>
         <button onclick="closeChatbot()"><i class="fas fa-times"></i></button>
       </div>
       <div class="chatbot-messages" id="chatbotMessages">
         <div class="message bot">
-          <div class="message-content">Hi! I'm CODE-X AI assistant. How can I help you today? Ask me about services, pricing, or timeline!</div>
+          <div class="message-content">👋 Hello! I'm CODE-X AI, your intelligent coding assistant. I can help you with web development questions, programming concepts, design tips, and of course, information about CODE-X services. What would you like to know today? 💻✨</div>
         </div>
       </div>
       <div class="chatbot-input">
-        <input type="text" id="chatbotInput" placeholder="Type your message..." onkeypress="handleChatKeypress(event)">
+        <input type="text" id="chatbotInput" placeholder="Ask me anything about coding, design, or services..." onkeypress="handleChatKeypress(event)">
         <button onclick="sendChatMessage()"><i class="fas fa-paper-plane"></i></button>
       </div>
     </div>
@@ -1163,7 +1177,7 @@
         <a href="https://twitter.com" target="_blank" class="mobile-social-icon"><i class="fab fa-x-twitter"></i></a>
         <a href="https://instagram.com" target="_blank" class="mobile-social-icon"><i class="fab fa-instagram"></i></a>
         <a href="https://wa.me/2349050786465" target="_blank" class="mobile-social-icon"><i class="fab fa-whatsapp"></i></a>
-        <a href="https://t.me/abdulmuiz" target="_blank" class="mobile-social-icon"><i class="fab fa-telegram"></i></a>
+        <a href="https://t.me/cohdeehx" target="_blank" class="mobile-social-icon"><i class="fab fa-telegram"></i></a>
       </div>
     </div>
   </div>
@@ -1427,7 +1441,7 @@
     }
     notificationBell.addEventListener('click', requestNotificationPermission);
 
-    // ========== AI CHATBOT ==========
+    // ========== SUPER INTELLIGENT AI CHATBOT ==========
     const chatbotBtn = document.getElementById('chatbotBtn');
     const chatbotContainer = document.getElementById('chatbotContainer');
     const chatbotMessages = document.getElementById('chatbotMessages');
@@ -1445,21 +1459,141 @@
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
-    function getBotResponse(message) {
-      const lowerMsg = message.toLowerCase();
-      if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('budget')) {
-        return "💲 Pricing varies by project. Basic websites start at ₦100k, e-commerce from ₦200k, and web apps from ₦300k. Contact me for a custom quote!";
-      } else if (lowerMsg.includes('timeline') || lowerMsg.includes('time') || lowerMsg.includes('how long')) {
-        return "⏱️ Project timelines depend on complexity. A simple website takes 1-2 weeks, while complex apps take 4-8 weeks.";
-      } else if (lowerMsg.includes('service') || lowerMsg.includes('offer')) {
-        return "🛠️ I offer: Responsive Websites, E-commerce, UI/UX Design, Web Applications, Mobile Apps, and SEO Optimization.";
-      } else if (lowerMsg.includes('contact') || lowerMsg.includes('reach')) {
-        return "📧 You can reach me at abdulmuizomotolani@gmail.com, WhatsApp: +234 905 078 6465, or Telegram: @abdulmuiz";
-      } else if (lowerMsg.includes('hello') || lowerMsg.includes('hi')) {
-        return "Hello! 👋 I'm the CODE-X AI assistant. How can I help you today?";
-      } else {
-        return "Thanks for your message! For detailed inquiries, please email abdulmuizomotolani@gmail.com or fill out the contact form.";
+    // Extensive knowledge base for the chatbot
+    function getIntelligentResponse(message) {
+      const lowerMsg = message.toLowerCase().trim();
+      
+      // Greetings and introductions
+      if (lowerMsg.match(/^(hi|hello|hey|greetings|sup|howdy|good morning|good afternoon|good evening)/)) {
+        return "👋 Hello there! I'm CODE-X AI, your friendly coding assistant. I'm here to help with anything related to web development, programming, design, or our services. What would you like to explore today? 💻✨";
       }
+      
+      // How are you
+      if (lowerMsg.includes('how are you') || lowerMsg.includes('how are u') || lowerMsg.includes('how do you do')) {
+        return "🤖 I'm doing fantastic, thanks for asking! I'm fully charged and ready to assist you with any coding questions, project inquiries, or general knowledge. How can I help you today? 😊";
+      }
+      
+      // Who are you / what are you
+      if (lowerMsg.includes('who are you') || lowerMsg.includes('what are you') || lowerMsg.includes('your name')) {
+        return "🤖 I'm CODE-X AI, an intelligent assistant created to help you with web development, programming concepts, design tips, and information about CODE-X services. I'm here 24/7 to answer your questions! 🚀";
+      }
+      
+      // Thank you
+      if (lowerMsg.includes('thank you') || lowerMsg.includes('thanks') || lowerMsg.includes('appreciate')) {
+        return "🙏 You're very welcome! I'm glad I could help. If you have any more questions, feel free to ask anytime. Have a great day! 🌟";
+      }
+      
+      // Goodbye
+      if (lowerMsg.includes('bye') || lowerMsg.includes('goodbye') || lowerMsg.includes('see you') || lowerMsg.includes('talk later')) {
+        return "👋 Goodbye! Thanks for chatting with me. If you have more questions later, I'll be right here. Don't forget to check out our portfolio and services! Have a wonderful day! 🌟";
+      }
+      
+      // Tell me about yourself
+      if (lowerMsg.includes('tell me about yourself') || lowerMsg.includes('about you')) {
+        return "🤖 I'm an AI assistant powered by extensive knowledge of web development, programming languages, design principles, and technology. I can help you with coding problems, explain concepts, recommend services, and provide information about CODE-X. What would you like to know?";
+      }
+      
+      // What can you do / help with
+      if (lowerMsg.includes('what can you do') || lowerMsg.includes('help with') || lowerMsg.includes('capabilities')) {
+        return "🌟 I can help you with:\n\n💻 **Coding Help** - HTML, CSS, JavaScript, React, Python, Node.js\n🎨 **Design Advice** - UI/UX principles, color theory, typography\n📊 **Project Planning** - Timeline estimation, technology selection\n💰 **Pricing Info** - Service packages and custom quotes\n📚 **Learning Resources** - Where to start learning to code\n🔧 **Troubleshooting** - Debugging and problem-solving\n\nJust ask me anything!";
+      }
+      
+      // HTML questions
+      if (lowerMsg.includes('html')) {
+        if (lowerMsg.includes('what is') || lowerMsg.includes('explain')) {
+          return "📄 **HTML (HyperText Markup Language)** is the standard markup language for creating web pages. It structures content using elements like `<h1>`, `<p>`, `<div>`, and `<section>`. HTML5, the latest version, adds semantic elements like `<article>`, `<nav>`, and `<header>` that improve accessibility and SEO. It's the foundation of every website! Need help with specific HTML concepts?";
+        } else if (lowerMsg.includes('learn')) {
+          return "🎓 **Learning HTML**: Start with free resources like freeCodeCamp, MDN Web Docs, or W3Schools. Practice by building simple pages - start with a basic structure, then add headings, paragraphs, images, and links. The key is consistent practice!";
+        }
+        return "📄 HTML (HyperText Markup Language) structures web content. It's the skeleton of every website. Want to know about HTML5 features, semantic elements, or how to structure a page?";
+      }
+      
+      // CSS questions
+      if (lowerMsg.includes('css')) {
+        if (lowerMsg.includes('what is') || lowerMsg.includes('explain')) {
+          return "🎨 **CSS (Cascading Style Sheets)** controls the visual presentation of websites. It handles colors, layouts, fonts, animations, and responsive design. Modern CSS includes Flexbox, Grid, and CSS Variables that make complex layouts much easier. Would you like to learn about specific CSS properties?";
+        } else if (lowerMsg.includes('flexbox')) {
+          return "📐 **Flexbox** is a CSS layout model that distributes space along a single axis. Key properties: `display: flex`, `justify-content` (horizontal alignment), `align-items` (vertical alignment), and `flex-direction`. It's perfect for navigation bars, card layouts, and centering content!";
+        } else if (lowerMsg.includes('grid')) {
+          return "🔲 **CSS Grid** is a 2-dimensional layout system. Use `display: grid`, `grid-template-columns`, and `gap` to create complex layouts easily. It's excellent for overall page structure and gallery layouts!";
+        }
+        return "🎨 CSS styles websites - colors, layouts, animations, responsiveness. Want to learn about Flexbox, Grid, animations, or responsive design techniques?";
+      }
+      
+      // JavaScript questions
+      if (lowerMsg.includes('javascript') || lowerMsg.includes('js')) {
+        if (lowerMsg.includes('what is') || lowerMsg.includes('explain')) {
+          return "⚡ **JavaScript** is the programming language of the web. It adds interactivity - think form validation, animations, API calls, and dynamic content updates. Modern JS includes ES6+ features like arrow functions, async/await, destructuring, and modules. It's essential for frontend and backend (Node.js) development!";
+        } else if (lowerMsg.includes('learn')) {
+          return "📘 **Learning JavaScript**: Start with variables, functions, loops, and arrays. Then move to DOM manipulation, events, and async programming. Great resources: JavaScript.info, The Odin Project, and freeCodeCamp. Practice by building small projects like a todo app or calculator!";
+        } else if (lowerMsg.includes('react')) {
+          return "⚛️ **React** is a popular library for building user interfaces. It uses components, JSX, and hooks like useState and useEffect. It's great for creating interactive, scalable applications. Need help with React concepts?";
+        }
+        return "⚡ JavaScript powers interactive websites. Want to learn about ES6 features, React, Node.js, or specific concepts like promises and async/await?";
+      }
+      
+      // React questions
+      if (lowerMsg.includes('react')) {
+        return "⚛️ **React** is a JavaScript library for building user interfaces. Key concepts: components (functional and class), JSX syntax, state management with useState/useReducer, effects with useEffect, and props for passing data. It's component-based and uses a virtual DOM for performance. Want to know more about hooks, context API, or Next.js?";
+      }
+      
+      // Python questions
+      if (lowerMsg.includes('python')) {
+        return "🐍 **Python** is a versatile programming language known for readability. It's great for backend development (Django, Flask), data science, AI/ML, and automation. Python's syntax is beginner-friendly with features like list comprehensions, decorators, and extensive libraries. Want to know about Python frameworks or learning resources?";
+      }
+      
+      // Pricing and services
+      if (lowerMsg.includes('price') || lowerMsg.includes('cost') || lowerMsg.includes('how much') || lowerMsg.includes('budget')) {
+        return "💰 **Pricing Overview**:\n\n• **Basic Website**: ₦100k - ₦200k (5-10 pages, responsive, contact form)\n• **E-commerce Store**: ₦250k - ₦500k (product management, payment integration)\n• **Web Application**: ₦350k - ₦1M+ (custom features, database, user accounts)\n• **UI/UX Design**: ₦80k - ₦200k (wireframes, prototypes, design system)\n• **Maintenance Package**: ₦30k/month (updates, backups, support)\n\nContact me for a custom quote tailored to your specific needs!";
+      }
+      
+      // Timeline
+      if (lowerMsg.includes('timeline') || lowerMsg.includes('how long') || lowerMsg.includes('duration') || lowerMsg.includes('take')) {
+        return "⏱️ **Project Timelines**:\n\n• **Simple Website**: 1-2 weeks\n• **Business Website**: 2-3 weeks\n• **E-commerce Store**: 3-4 weeks\n• **Web Application**: 4-8 weeks\n• **Complex Custom Solution**: 8-12 weeks\n\nTimelines vary based on complexity, revisions, and content readiness. I'll provide a detailed schedule during our consultation!";
+      }
+      
+      // Services offered
+      if (lowerMsg.includes('service') || lowerMsg.includes('offer') || lowerMsg.includes('what do you do')) {
+        return "🛠️ **Services I Offer**:\n\n💻 **Web Development** - Responsive websites, e-commerce stores, web applications\n🎨 **UI/UX Design** - User-centered design, wireframes, prototypes\n📱 **Mobile Apps** - Cross-platform mobile applications\n🔧 **SEO Optimization** - Improve search engine visibility\n📊 **Maintenance & Support** - Ongoing updates and security\n\nCheck out the Services page for more details!";
+      }
+      
+      // Portfolio
+      if (lowerMsg.includes('portfolio') || lowerMsg.includes('work') || lowerMsg.includes('projects') || lowerMsg.includes('examples')) {
+        return "🎨 **Portfolio Highlights**: I've built over 50+ websites including corporate sites, e-commerce platforms, web applications, and custom dashboards. Visit the Portfolio page to see detailed case studies and live project examples!";
+      }
+      
+      // Contact info
+      if (lowerMsg.includes('contact') || lowerMsg.includes('email') || lowerMsg.includes('reach') || lowerMsg.includes('how to get in touch')) {
+        return "📬 **Contact Information**:\n\n📧 **Email**: abdulmuizomotolani@gmail.com\n📱 **WhatsApp**: +234 905 078 6465\n💬 **Telegram**: @cohdeehx\n🌐 **Website**: Fill out the contact form\n\nI typically respond within 24 hours!";
+      }
+      
+      // Learning resources
+      if (lowerMsg.includes('learn') || lowerMsg.includes('study') || lowerMsg.includes('resources') || lowerMsg.includes('how to start')) {
+        return "📚 **Learning Resources**:\n\n🆓 **Free**: freeCodeCamp, The Odin Project, MDN Web Docs, W3Schools\n💲 **Paid**: Udemy, Coursera, Frontend Masters\n🎯 **Recommended Path**: Start with HTML/CSS → JavaScript → React → Backend (Node.js)\n\nPractice by building projects - start small and gradually increase complexity!";
+      }
+      
+      // Technology stack
+      if (lowerMsg.includes('tech stack') || lowerMsg.includes('technologies') || lowerMsg.includes('what do you use')) {
+        return "🔧 **My Tech Stack**:\n\n• **Frontend**: HTML5, CSS3, JavaScript, React, Next.js\n• **Backend**: Node.js, Express, Python, Django\n• **Database**: MongoDB, PostgreSQL, Firebase\n• **Tools**: Git, VS Code, Figma, Webpack\n\nI choose the best technology for each project's specific needs!";
+      }
+      
+      // Responsive design
+      if (lowerMsg.includes('responsive') || lowerMsg.includes('mobile') || lowerMsg.includes('phone')) {
+        return "📱 **Responsive Design**: All websites I build are fully responsive - meaning they look great and function perfectly on desktops, tablets, and mobile phones. I use techniques like CSS Grid, Flexbox, media queries, and mobile-first design principles.";
+      }
+      
+      // SEO
+      if (lowerMsg.includes('seo') || lowerMsg.includes('search engine')) {
+        return "🔍 **SEO Optimization**: I implement SEO best practices including semantic HTML, meta tags, proper heading structure, image optimization, sitemap generation, and performance optimization to help your website rank better in search results.";
+      }
+      
+      // Security
+      if (lowerMsg.includes('security') || lowerMsg.includes('secure') || lowerMsg.includes('hack')) {
+        return "🔒 **Web Security**: I implement security best practices including HTTPS, input validation, SQL injection prevention, XSS protection, secure authentication, and regular security updates to keep your website safe.";
+      }
+      
+      // Default response for unrecognized queries
+      return "🤔 That's an interesting question! I'm still learning, but I can help with web development, programming concepts, design tips, or information about CODE-X services. Could you rephrase or ask something like:\n\n• 'How much does a website cost?'\n• 'How long does development take?'\n• 'How do I learn JavaScript?'\n• 'What services do you offer?'\n• 'How can I contact you?'\n\nLet me know how I can assist! 💡";
     }
 
     window.sendChatMessage = () => {
@@ -1467,7 +1601,10 @@
       if (!message) return;
       addMessage(message, true);
       chatbotInput.value = '';
-      setTimeout(() => addMessage(getBotResponse(message), false), 500);
+      setTimeout(() => {
+        const response = getIntelligentResponse(message);
+        addMessage(response, false);
+      }, 300);
     };
     window.handleChatKeypress = (e) => { if (e.key === 'Enter') sendChatMessage(); };
 
@@ -1481,13 +1618,15 @@
       const resultDiv = document.getElementById('quizResult');
       let recommendation = '';
       if (quizAnswers[1] === 'website' && quizAnswers[2] === 'urgent') {
-        recommendation = "Based on your answers, I recommend my **Express Website Package**! This includes a fully responsive 5-page website delivered in 1 week. Starting from ₦150k.";
+        recommendation = "✨ Based on your answers, I recommend my **Express Website Package**! This includes a fully responsive 5-page website delivered in 1 week. Starting from ₦150k with 1 month of free support.";
       } else if (quizAnswers[1] === 'ecommerce') {
-        recommendation = "Based on your answers, I recommend my **E-commerce Solution**! Custom online store with payment integration, starting from ₦250k.";
+        recommendation = "🛍️ Based on your answers, I recommend my **E-commerce Solution**! Custom online store with product management, payment integration, and inventory system. Starting from ₦250k.";
       } else if (quizAnswers[1] === 'app') {
-        recommendation = "Based on your answers, I recommend my **Web Application Development** service! Starting from ₦350k.";
+        recommendation = "🚀 Based on your answers, I recommend my **Web Application Development** service! Custom web apps with user authentication, database, and admin panel. Starting from ₦350k.";
+      } else if (quizAnswers[3] === 'high') {
+        recommendation = "💎 Based on your answers, I recommend my **Premium Full-Stack Development** service! Complete custom solution with advanced features, admin panel, and 6 months of support. Starting from ₦500k.";
       } else {
-        recommendation = "Based on your answers, I recommend scheduling a free consultation to discuss your specific needs. Contact me to get a personalized quote!";
+        recommendation = "📋 Based on your answers, I recommend scheduling a free consultation to discuss your specific needs. Let's chat about your project goals and find the perfect solution together!";
       }
       resultDiv.innerHTML = `<i class="fas fa-lightbulb"></i> ${recommendation}<br><br><a href="contact.html" class="btn" style="margin-top: 15px;">Get a Free Quote →</a>`;
       resultDiv.classList.add('active');
@@ -1530,7 +1669,7 @@
       toast.classList.add('show');
       setTimeout(() => toast.classList.remove('show'), 3000);
     };
-    setTimeout(() => showToast('Welcome to CODE-X! 🚀'), 1000);
+    setTimeout(() => showToast('Welcome to CODE-X! 🚀 Ask me anything!'), 1000);
 
     // Social icon toasts
     document.querySelectorAll('.social-icon, .mobile-social-icon').forEach(icon => {
